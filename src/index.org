@@ -11,6 +11,8 @@
   experiment as a service. 
 
 
+  [[./images/clubbing-experiments.jpg]]
+
 * Approach A
 ** Steps
   + Identify the labs whose experiments are to be clubbed togther.
