@@ -13,7 +13,9 @@
 
   [[./images/clubbing-experiments.jpg]]
 
+
 * Approach A
+
 ** Steps
   + Identify the labs whose experiments are to be clubbed togther.
   + Deploy a =experiment server=, which will contain the clubbed
@@ -32,19 +34,19 @@
   + Make changes in reverse-proxy server to redirect
     http://lab1/exp1/Simulation.html to
     http://experiment-server/lab1/Simulation.html
-** Issues 
+
+** Challenges/Issues 
   + Lab sources with relative and absolute paths are to be checked for
     link integrity. Change in DicrectoryRoot will make assets like
     images, js, css unaccessble and hence will not load.
   + Adding entries in Reverse proxy server to redirect old urls to new
     urls need multiple rules for file to file redirection.
-
-
-
-
-
+  + This idea can add multiple redirection rules in Revere proxy
+    server which will be difficult to manage and also cannot be
+    ensured to be bug free.
 
 * Approach B
+
 ** Strategy 
    + Identify  =labs= to be clubbed together. 
    + Pick single lab and visit each experiment of the lab and using
@@ -66,6 +68,13 @@
      labs as well.
    + After identifying the right process can be automated using scripts.
   
+
+** Challenges 
+   + Hardcoded links (absolute and relative) to files must be
+     identified and fixed so that experiments point to right assets. 
+   + The above can be automated once the manual general steps are
+     idenfied and ensured to be working.
+   
 ** How experiments will look in Experiment server ?
    + Even though experiments are forming experiment server, the
      experiment server will still contain complete lab sources in it.
