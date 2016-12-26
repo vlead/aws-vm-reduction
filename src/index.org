@@ -10,5 +10,33 @@
   This will contain the documentation related to the activities for 
   experiment as a service. 
 
+* Approach A
+** Steps
+  + Identify the labs whose experiments are to be clubbed togther.
+  + Deploy a =experiment server=, which will contain the clubbed
+    experiments.
+  + Copy the source code of =lab1= in =experiment server= such that
+    sources are at /var/www/html/lab1/
+  + Copy the source code of =lab2= in =experiment server= such that
+    sources are at /var/www/html/lab2/
+  + Visit the lab and then specific experiments, identify the file
+    serving the Simulation (say Simulation.html)
+  + Say experiment is served at URL http://lab1/exp1/Simulation.html and http://lab2/exp1/Simulation.html
+  + Try to access the same experiment from experiment server (say
+    http://experiment-server/lab1/exp1/Simulation.html)
+  + Similiarly, try to access ( say
+    http://experiment-server/lab2/exp1/Simulation.html)
+  + Make changes in reverse-proxy server to redirect
+    http://lab1/exp1/Simulation.html to
+    http://experiment-server/lab1/Simulation.html
+** Issues 
+  + Lab sources with relative and absolute paths are to be checked for
+    link integrity. Change in DicrectoryRoot will make assets like
+    images, js, css unaccessble and hence will not load.
+  + Adding entries in Reverse proxy server to redirect old urls to new
+    urls need multiple rules for file to file redirection.
+
+
+
 
 
