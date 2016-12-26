@@ -44,12 +44,12 @@
 
 * Approach B
 ** Strategy 
-   + Identify a =labs= to be clubbed together. 
-   + Visit each experiment of the lab and using inspect element,
-     identify the files serving the experiment. For example, say there
-     is a lab http://lab1.vlabs.ac.in . Identify the file which is
-     serving the experiment and identify the assets related to that
-     experiment.
+   + Identify  =labs= to be clubbed together. 
+   + Pick single lab and visit each experiment of the lab and using
+     inspect element, identify the files serving the experiment. For
+     example, say there is a lab http://lab1.vlabs.ac.in . Identify
+     the files which are serving experiments and identify the assets
+     related to that experiment.
    + Check for asolute and relative URLs in the lab sources. When
      multiple lab sources are to be clubbed together, DirectoryRoot
      will change. Hence hard coded URLs absolute and relative
@@ -64,7 +64,18 @@
      labs as well.
    + After identifying the right process can be automated using scripts.
   
-  
+** How experiments will look in Experiment server ?
+   + Even though experiments are forming experiment server, the
+     experiment server will still contain complete lab sources in it.
+   + Assuming the =DirectoryRoot as /var/www/html/=, sources of lab will be placed as shown 
+     #+BEGIN_SRC command
+     lab1 sources - /var/www/html/lab1/
+     lab2 sources - /var/www/html/lab2/
+     labN sources - /var/www/html/labN/
+     #+END_SRC
+   + Files serving Simulations/Experiments will be served from the
+     directory structure as above.
+
    
 
    
