@@ -10,6 +10,7 @@
   This will contain the documentation related to the activities for 
   experiment as a service. 
 
+
 * Approach A
 ** Steps
   + Identify the labs whose experiments are to be clubbed togther.
@@ -40,3 +41,30 @@
 
 
 
+
+* Approach B
+** Strategy 
+   + Identify a =labs= to be clubbed together. 
+   + Visit each experiment of the lab and using inspect element,
+     identify the files serving the experiment. For example, say there
+     is a lab http://lab1.vlabs.ac.in . Identify the file which is
+     serving the experiment and identify the assets related to that
+     experiment.
+   + Check for asolute and relative URLs in the lab sources. When
+     multiple lab sources are to be clubbed together, DirectoryRoot
+     will change. Hence hard coded URLs absolute and relative
+     (specially absolute) will not be accessing to the right asset
+     they need to.
+   + Every access using absolute and relative URL must be fixed in
+     terms of the DirectoryRoot of experiment server.
+   + Automated tool like grunt can help in identifying errors for
+     unaccessible links/files
+   + After fixing the issues Lab wise/experiment wise, document the
+     steps which are required to repeat the same procedure for other
+     labs as well.
+   + After identifying the right process can be automated using scripts.
+  
+  
+   
+
+   
