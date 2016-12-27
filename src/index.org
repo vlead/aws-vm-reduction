@@ -45,6 +45,7 @@
     server which will be difficult to manage and also cannot be
     ensured to be bug free.
 
+
 * Approach B
 
 ** Strategy 
@@ -90,3 +91,16 @@
    
 
    
+
+* Approach C
+  Using the concept of deploy containers.
+  + Deploy a experiment server and install apache
+  + Copy the build sources in /var/www/html in experiment server
+  + Sources must be copied in folders for each lab in DocumentRoot - 
+    /var/www/html/lab1 ... /var/www/html/labN
+  + Configure Virtual host config in Apache
+  + Access lab 
+
+** What is to be done ?
+  + Identify labs with server side dependencies
+  + Copy the sources and configure reverse proxy 
