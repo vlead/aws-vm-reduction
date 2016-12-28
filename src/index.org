@@ -7,12 +7,23 @@
 #+OPTIONS: ^:nil
 
 * Introduction 
-  This will contain the documentation related to the activities for 
-  experiment as a service. 
-
+  + This will contain the documentation related to the activities for 
+    experiment as a service. 
+  + Lab/Experiments which do not have server-side dependencies can be hosted 
+    and served from a single machine. 
 
   [[./images/clubbing-experiments.jpg]]
 
+* Working Approach 
+  The concept of deploy container is used to host multiple labs from a sinle
+  VM/machine. Following are the steps to be followed -
+** Steps 
+  + Identify a lab having none/minimal server side dependency 
+  + Deploy a Experiment server in the cluster
+  + Set Directory root to /var/www/ or /var/www/html/
+  + Copy the sources of lab to DirectoryRoot inside a folder with name
+    as its lab id.
+  + Modify the reverse proxy entries to point to experiment server.
 
 * Approach A
 
