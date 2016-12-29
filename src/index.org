@@ -24,7 +24,42 @@
   + Copy the sources of lab to DirectoryRoot inside a folder with name
     as its lab id.
   + Modify the reverse proxy entries to point to experiment server.
+** POC of concept in local machine
+  + Install apache web server in local machine.
+  + Set DirectoryRoot to /var/www/html 
+  + Take two labs and copy the sources to /var/www/html/<labName> 
+  + Configure VirtualHost file for apache
+    #+BEGIN_SRC config
+    <VirtualHost *:80>
+ServerAdmin ashay@vlabs.ac.in
+DocumentRoot /var/www/html/ds-iiith
+ServerName ds-iiith.local.ac.in
+ServerAlias www.ds-iiith.local.ac.in
+#ErrorLog /var/log/logs/ds-iiith.local.ac.in
+#CustomLog /var/log/logs/ds-iiith.local.ac.in c
+</VirtualHost>
 
+<VirtualHost *:80>
+ServerAdmin ashay@vlabs.ac.in
+DocumentRoot /var/www/html/mas-iiith
+ServerName mas-iiith.local.ac.in
+ServerAlias www.mas-iiith.local.ac.in
+#ErrorLog /var/log/logs/ds-iiith.local.ac.in
+#CustomLog /var/log/logs/ds-iiith.local.ac.in c
+</VirtualHost>
+    #+END_SRC
+  + Config /etc/hosts file to give local names to lab
+    #+BEGIN_SRC config
+    vim /etc/hosts
+127.0.0.1       localhost vlead-H81M-S
+127.0.1.1       vlead-H81M-S
+
+127.0.0.1       ds-iiith.local.ac.in
+127.0.0.1       mas-iiith.local.ac.in
+    
+    #+END_SRC
+  + Try accessing lab using local urls
+  + All assets and experiments were found to be accessible and functioning.
 * Approach A
 
 ** Steps
