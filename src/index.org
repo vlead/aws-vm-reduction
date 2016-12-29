@@ -24,7 +24,7 @@
   + Copy the sources of lab to DirectoryRoot inside a folder with name
     as its lab id.
   + Modify the reverse proxy entries to point to experiment server.
-** POC of concept in local machine
+** POC  local machine
   + Install apache web server in local machine.
   + Set DirectoryRoot to /var/www/html 
   + Take two labs and copy the sources to /var/www/html/<labName> 
