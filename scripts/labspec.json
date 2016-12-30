@@ -2,8 +2,8 @@
 {
   "lab": {
     "description": {
-      "name": "Analytics API Server",
-      "id": "analyticsv1",
+      "name": "Experiment Server to Server Experiments from one VM",
+      "id": "experiment-serverv1.0.0",
       "status": "working code",
       "discipline": [],
       "type": "",
