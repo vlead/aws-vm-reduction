@@ -14,6 +14,11 @@
 
   [[./images/clubbing-experiments.jpg]]
 
+* Criteria for clubbing labs in one VM
+  + Lab must have any of the folling dependencies -
+    Dependency_set = { HTML, CSS, JS, ActionScript }
+    Any subset of Dependencey_set can be clubbed together. 
+
 * Working Approach 
   The concept of deploy container is used to host multiple labs from a sinle
   VM/machine. Following are the steps to be followed -
