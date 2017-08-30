@@ -65,6 +65,7 @@ ServerAlias www.mas-iiith.local.ac.in
     #+END_SRC
   + Try accessing lab using local urls
   + All assets and experiments were found to be accessible and functioning.
+
 * Approach A
 
 ** Steps
@@ -155,3 +156,143 @@ ServerAlias www.mas-iiith.local.ac.in
 ** What is to be done ?
   + Identify labs with server side dependencies
   + Copy the sources and configure reverse proxy 
+* AWS VM reduction Effors
+** List of Labs hosted on experiment-server
+   List of labs that are running experiment-server and in production
+
+   1. http://fm-nitk.vlabs.ac.in
+   2. http://fmc-nitk.vlabs.ac.in
+   3. https://mfts-iitg.vlabs.ac.in
+   4. https://mv-iitg.vlabs.ac.in
+   5. https://vmt-iitg.vlabs.ac.in
+   6. https://ve-iitg.vlabs.ac.in
+   7. https://ergonomics-iitg.vlabs.ac.in
+   8. https://vlsi-iitg.vlabs.ac.in
+   9. https://ssl-iitg.vlabs.ac.in
+   10. https://vem-iitg.vlabs.ac.in
+   11. https://anthropology-iitg.vlabs.ac.in
+   12. https://he-coep.vlabs.ac.in
+   13. https://sl-coep.vlabs.ac.in
+   14. https://va-coep.vlabs.ac.in
+   15. https://plc-coep.vlabs.ac.in
+   16. https://em-coep.vlabs.ac.in
+   17. https://mm-coep.vlabs.ac.in
+   18. https://fab-coep.vlabs.ac.in
+   19. https://sm-nitk.vlabs.ac.in
+   20. https://ied-nitk.vlabs.ac.in
+   21. https://mm-nitk.vlabs.ac.in
+   22. https://mdmv-nitk.vlabs.ac.in
+   23. https://sa-nitk.vlabs.ac.in
+   24. https://mrmsmtbs-iitk.vlabs.ac.in
+   25. https://uorepc-nitk.vlabs.ac.in
+   26. https://tel-iitb.vlabs.ac.in
+   27. https://mfs-iiith.vlabs.ac.in
+   28. https://ml-iitb.vlabs.ac.in
+   29. https://pe-iitb.vlabs.ac.in
+   30. https://cse01-iiith.vlabs.ac.in
+   31. https://mas-iiith.vlabs.ac.in
+
+** How experiment server serves these labs
+   Bellow sections shows what is the manual process to serve the labs
+   from experiment-server. Updating reverse proxy and DNS entries is
+   already done in systems-model repo on production. In systems-model
+   repository inside =build= directory. Check the file called
+   =roles/common_vars/vars/main.yml=. There we can find clubbed_labs
+   variable. 
+*** Clone the identified labs
+ |------+--------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------|
+ | S.No | Lab Name                                                                             | Repo Link                                                                                                            |
+ |------+--------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------|
+ |    1 | fluid-mechanics-nitk                                                                 | https://github.com/Virtual-Labs/fluid-mechanics-nitk                                                                 |
+ |    2 | fluid-machinery-lab-nitk                                                             | https://github.com/Virtual-Labs/fluid-machinery-lab-nitk                                                             |
+ |    3 | molecular-absorption-spectroscopy-responsive-lab,                                    | https://github.com/Virtual-Labs/molecular-absorption-spectroscopy-responsive-lab                                     |
+ |    4 | virtual-laboratory-experience-in-fluid-and-thermal-sciences-iitg                     | https://github.com/Virtual-Labs/virtual-laboratory-experience-in-fluid-and-thermal-sciences-iitg                     |
+ |    5 | virtual-lab-for-mechanical-vibrations-iitg                                           | https://github.com/Virtual-Labs/virtual-lab-for-mechanical-vibrations-iitg                                           |
+ |    6 | virtual-mass-transfer-lab-iitg                                                       | https://github.com/Virtual-Labs/virtual-mass-transfer-lab-iitg                                                       |
+ |    7 | virtual-english-iitg                                                                 | https://github.com/Virtual-Labs/virtual-english-iitg                                                                 |
+ |    8 | ergonomics-iitg                                                                      | https://github.com/Virtual-Labs/ergonomics-iitg                                                                      |
+ |    9 | digital-vlsi-design-iitg                                                             | https://github.com/Virtual-Labs/digital-vlsi-design-iitg                                                             |
+ |   10 | signals-and-systems-laboratory-iitg                                                  | https://github.com/Virtual-Labs/signals-and-systems-laboratory-iitg                                                  |
+ |   11 | virtual-electrical-machine-iitg                                                      | https://github.com/Virtual-Labs/virtual-electrical-machine-iitg                                                      |
+ |   12 | anthropology-iitg                                                                    | https://github.com/Virtual-Labs/anthropology-iitg                                                                    |
+ |   13 | hybrid-electronics-lab-coep                                                          | https://github.com/Virtual-Labs/hybrid-electronics-lab-coep                                                          |
+ |   14 | bio-medical-and-signal-processing-laboratory-coep                                    | https://github.com/Virtual-Labs/bio-medical-and-signal-processing-laboratory-coep                                    |
+ |   15 | sensor-laboratory-coep                                                               | https://github.com/Virtual-Labs/sensor-laboratory-coep                                                               |
+ |   16 | vibration-and-acoustics-coep                                                         | https://github.com/Virtual-Labs/vibration-and-acoustics-coep                                                         |
+ |   17 | programmable-logic-controller-coep                                                   | https://github.com/Virtual-Labs/programmable-logic-controller-coep                                                   |
+ |   18 | electrical-machines-coep                                                             | https://github.com/Virtual-Labs/electrical-machines-coep                                                             |
+ |   19 | strength-of-materials-nitk                                                           | https://github.com/Virtual-Labs/strength-of-materials-nitk                                                           |
+ |   20 | micro-machining-laboratory-coep                                                      | https://github.com/Virtual-Labs/micro-machining-laboratory-coep                                                      |
+ |   21 | industrial-electrical-drives-nitk                                                    | https://github.com/Virtual-Labs/industrial-electrical-drives-nitk                                                    |
+ |   22 | fab-laboratory-coep                                                                  | https://github.com/Virtual-Labs/fab-laboratory-coep                                                                  |
+ |   23 | mechanics-of-machine-nitk                                                            | https://github.com/Virtual-Labs/mechanics-of-machine-nitk                                                            |
+ |   24 | machine-dynamics-and-mechanical-vibrations-nitk                                      | https://github.com/Virtual-Labs/machine-dynamics-and-mechanical-vibrations-nitk                                      |
+ |   25 | substration-automation-nitk                                                          | https://github.com/Virtual-Labs/substration-automation-nitk                                                          |
+ |   26 | material-response-to-micro-structural-mechanical-thermal-and-biological-stimuli-iitk | https://github.com/Virtual-Labs/material-response-to-micro-structural-mechanical-thermal-and-biological-stimuli-iitk |
+ |   27 | protein-engg-iitb                                                                    | https://github.com/Virtual-Labs/protein-engg-iitb                                                                    |
+ |   28 | virtual-smart-structures-and-dynamics-laboratory-iitd                                | https://github.com/Virtual-Labs/virtual-smart-structures-and-dynamics-laboratory-iitd                                |
+ |   29 | computer-organization-responsive-lab                                                 | https://github.com/Virtual-Labs/computer-organization-responsive-lab                                                 |
+ |   30 | data-structures-responsive-lab                                                       | https://github.com/Virtual-Labs/data-structures-responsive-lab                                                       |
+ |   31 | unit-operation-reaction-engineering-and--process-control-nitk                        | https://github.com/Virtual-Labs/unit-operation-reaction-engineering-and--process-control-nitk                        |
+ |   32 | traffic-engg-iitb                                                                    | https://github.com/Virtual-Labs/traffic-engg-iitb                                                                    |
+ |   33 | molecular-florescence-spectroscopy-iiith                                             | https://github.com/Virtual-Labs/molecular-florescence-spectroscopy-iiith                                             |
+ |   34 | evalidate-dei                                                                        | https://github.com/Virtual-Labs/evalidate-dei                                                                        |
+ |   35 | summer-2015-iitg-workshop                                                            | https://github.com/Virtual-Labs/summer-2015-iitg-workshop                                                            |
+ |   36 | transducers-and-instrument-vlab-iitk                                                 | https://github.com/Virtual-Labs/transducers-and-instrument-vlab-iitk                                                 |
+ |   37 | maglev-iitb                                                                          | https://github.com/Virtual-Labs/maglev-iitb                                                                          |
+ |------+--------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------|
+ #+TBLFM: $1=@-1 + 1::@2$1=1
+ 
+ There are some issues with some of the labs.
+*** Put the Labs in web server ( Experiment-server)
+    Once all repositories cloned.
+    1. Change directory to lab
+    2. Change directory to src
+    3. Run make
+    4. copy the build/* into =/var/www/html/<lab-name>/
+       
+   Repeat the same steps for every lab
+*** Production Reverse proxy entries  
+   For one lab,for example fmc-nitk( Fluid Mechanic Lab from NIT
+   Surathkal). Reverse proxy entry should be like below shown example.
+
+   For every lab, there should be one associated virtual-host entry 
+   #+BEGIN_EXAMPLE
+ <VirtualHost *:80>
+ServerAdmin engg@vlabs.ac.in
+#DocumentRoot /var/www/html
+ServerName fmc-nitk.virtual-labs.ac.in
+ServerAlias fmc-nitk.vlabs.ac.in
+ErrorLog logs/fmc-nitk.virtual-labs.ac.in-error_log
+CustomLog logs/fmc-nitk.virtual-labs.ac.in-access_log combined
+<Location />
+ProxyPass http://fmc-nitk.virtual-labs.ac.in/fmc-nitk/
+ProxyPassReverse http://fmc-nitk.virtual-labs.ac.in/fmc-nitk/
+</Location>
+</VirtualHost>
+
+<VirtualHost *:443>
+ServerAdmin engg@vlabs.ac.in
+#DocumentRoot /var/www/html
+ServerName fmc-nitk.virtual-labs.ac.in
+ServerAlias fmc-nitk.vlabs.ac.in
+ErrorLog logs/fmc-nitk.virtual-labs.ac.in-error_log
+CustomLog logs/fmc-nitk.virtual-labs.ac.in-access_log combined
+<Location />
+ProxyPass http://fmc-nitk.virtual-labs.ac.in/fmc-nitk/
+ProxyPassReverse http://fmc-nitk.virtual-labs.ac.in/fmc-nitk/
+</Location>
+</VirtualHost>
+
+   #+END_EXAMPLE
+*** Production DNS entries 
+    In Private DNS, Modified DNS entry for fm-nitk lab in both the
+    files */var/named/vlabs.ac.in.forward* and
+    */var/named/virtual-labs.ac.in.forward* as follows From
+#+BEGIN_EXAMPLE
+ fm-nitk       IN         A         10.100.2.105 ; Assume fm-nitk lab is hosted on AWS VM with this IP   
+#+END_EXAMPLE
+to
+#+BEGIN_EXAMPLE
+ fm-nitk       IN         A         10.100.2.253 ; Experiment Server IP.   
+#+END_EXAMPLE
